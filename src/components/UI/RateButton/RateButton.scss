@@ -1,0 +1,32 @@
+.rate-btn {
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0 10px 0 0;
+  border:0;
+}
+
+.comment-rate {
+
+  .rate-btn {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+
+button {
+  fill: #606060;
+}
+
+svg {
+  display: block;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+}
+
+.dis {
+  fill: red;
+}
+

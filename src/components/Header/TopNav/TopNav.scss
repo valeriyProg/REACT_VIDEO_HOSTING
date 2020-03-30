@@ -1,0 +1,36 @@
+.main-nav {
+  align-self: center;
+
+  ul {
+    align-items: center;
+
+    li {
+      margin: 0 15px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      svg {
+        max-width: 30px;
+      }
+
+      a {
+        display: block;
+        fill: #606060;
+        color: #606060;
+
+        &:hover {
+          text-decoration: none;
+          opacity: .8;
+        }
+      }
+    }
+  }
+}
+
+

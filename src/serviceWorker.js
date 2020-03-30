@@ -7,7 +7,7 @@
 // existing tabs open on the page have been closed, since previously cached
 // resources are updated in the background.
 
-// To learn more about the benefits of this model and instructions on how to
+// To learn more About-page the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
 const isLocalhost = Boolean(
@@ -81,8 +81,8 @@ function registerValidSW(swUrl, config) {
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
-              // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.');
+              // "MainContent is cached for offline use." message.
+              console.log('MainContent is cached for offline use.');
 
               // Execute callback
               if (config && config.onSuccess) {

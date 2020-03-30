@@ -1,0 +1,56 @@
+.video-player {
+  padding: 0;
+
+  .inner {
+    background: #606060;
+  }
+}
+
+video {
+  display: block;
+}
+
+.video-meta {
+  .info {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 20px 0 0;
+
+    .title {
+      margin: 0 0  15px;
+      width: 100%;
+    }
+  }
+}
+
+.rating {
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.rate-container {
+  width: 175px;
+  margin-bottom: 20px;
+}
+
+.selected {
+  fill: #065fd4;
+  color: #065fd4;
+}
+
+.description {
+  padding: 20px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.comment-content, .comment-info {
+  padding: 20px 0;
+}
+
+
+.btn-red {
+  background: #cc0000;
+}
+
+.description-text {
+  padding: 20px 10px 0 60px;
+}

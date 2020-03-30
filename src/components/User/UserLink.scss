@@ -1,0 +1,28 @@
+.avatar {
+  display: block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: bisque;
+
+  span {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    color: #030303;
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 1.8rem;
+  }
+}
+
+.user-name {
+  color: #030303;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.8rem;
+}
