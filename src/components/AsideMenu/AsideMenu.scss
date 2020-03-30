@@ -1,0 +1,39 @@
+aside.aside-bar {
+  position: fixed;
+  background: #ffffff;
+  min-height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 33;
+  //transition: all .3s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.aside-bar-area {
+  position: fixed;
+  z-index: 22;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, .5);
+}
+
+aside.display {
+  transform: translateX(0%);
+}
+
+.aside-header {
+  padding: 10px 34px 10px;
+}
+
+.bordered {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.content-block {
+  padding: 10px 20px;
+  a {
+    color: #606060;
+  }
+}
