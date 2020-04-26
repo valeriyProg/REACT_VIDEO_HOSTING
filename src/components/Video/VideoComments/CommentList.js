@@ -2,8 +2,7 @@ import React, {Component} from "react";
 import CommentItem from "./CommentItem";
 import './CommentList.scss';
 import PropTypes from "prop-types";
-import CommentFormButton from "../../UI/CommentButtons/CommentFormButton";
-import AddCommentForm from "./AddCommentForm";
+import sort from "../../../services/sort";
 
 class CommentList extends Component{
     constructor(props) {
@@ -15,11 +14,12 @@ class CommentList extends Component{
     }
 
     render() {
-        let list = this.props.comments ? this.props.comments.map((item, index) => (<li key={ index }><CommentItem commentData={ item }/></li>)) : <li>Loading</li> ;
+        let list = this.props.comments ?
+            sort(this.props.comments, this.props.orderBy).map((item, index) => (<li key={ index }><CommentItem commentData={ item }/></li>))
+            : <li className="default-preloader"/>;
 
         return (
             <React.Fragment>
-                <AddCommentForm />
                  <ul className="comments">
                     { list }
                 </ul>
@@ -31,7 +31,7 @@ class CommentList extends Component{
 
 CommentList.propTypes = {
     comments: PropTypes.arrayOf(PropTypes.object).isRequired,
-    onClick: PropTypes.func.isRequired
+    orderBy: PropTypes.string.isRequired,
 };
 
 export default CommentList;

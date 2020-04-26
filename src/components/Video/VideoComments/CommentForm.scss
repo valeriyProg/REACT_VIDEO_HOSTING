@@ -1,0 +1,29 @@
+.add-comment {
+
+  button:not(:last-child){
+    margin-right: 20px;
+  }
+
+  .add-comment-container {
+    position: relative;
+    width: 100%;
+    padding: 5px 0;
+    margin: 0 0 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+
+
+  }
+  .placeholder {
+    &:after {
+      content: 'Leave comment';
+      position: absolute;
+      left: 0;
+      top: 5px;
+    }
+  }
+}
+
+.user-col {
+  margin-right: 15px;
+}

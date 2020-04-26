@@ -8,7 +8,6 @@ class CommentFormButton extends Component {
 
         return (
             <button disabled={ !this.props.active } type={ this.props.type }
-                    onClick={ e => this.props.onClick() }
                     className={ this.props.active ? classes.concat('active').join(' ') : classes.join(' ')}>
                 { this.props.children }
             </button>
@@ -17,7 +16,6 @@ class CommentFormButton extends Component {
 }
 
 CommentFormButton.propTypes = {
-    onClick: PropTypes.func.isRequired,
     type: PropTypes.string.isRequired,
     active: PropTypes.bool
 };

@@ -28,6 +28,6 @@ export const windowLocationMappers = {
         location: state.windowLocation.location
     }),
     mapDispatchToProps: (dispatch) => ({
-        setWindowLocation: () => dispatch(setWindowLocation(new URL(window.location))),
+        setWindowLocation: (location) => dispatch(setWindowLocation(location)),
     })
 };

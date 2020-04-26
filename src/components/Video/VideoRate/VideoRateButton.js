@@ -16,7 +16,6 @@ class VideoRateButton extends Component{
                             </span>
                         </a>
                     </div>
-
                 </div>
             </div>
         );

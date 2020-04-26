@@ -4,7 +4,11 @@
   height: 2px;
 
   .rate-status {
-    background: #065fd4;
+    background: #606060;
     height: 100%;
+  }
+
+  .rate-status.selected {
+    background: #065fd4;
   }
 }

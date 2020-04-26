@@ -2,9 +2,9 @@ import {hideSidebar, setAsideBarConfig, showSidebar} from "../actions";
 import {HIDE_SIDEBAR, SET_ASIDE_BAR_CONFIG, SHOW_SIDEBAR} from "../actions-types";
 
 const initialState = {
-    display: false,
+    display: true,
     bodyOverflow: 'auto',
-    transitioned:  0.5
+    transitioned:  undefined
 };
 
 export function asideBarReducer(state = initialState, actions) {

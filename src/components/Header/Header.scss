@@ -2,11 +2,13 @@ header {
   padding: 10px 0;
   position: fixed;
   width: 100%;
-  z-index: 10;
+  min-height: 61px;
+  z-index: 1110;
   display: flex;
   background: #ffffff;
   color: #606060;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   align-items: center;
+
 }
 

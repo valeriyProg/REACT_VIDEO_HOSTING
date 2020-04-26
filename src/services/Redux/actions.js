@@ -1,4 +1,10 @@
-import {SET_WINDOW_LOCATION, HIDE_SIDEBAR, SHOW_SIDEBAR, SET_ASIDE_BAR_CONFIG} from "./actions-types";
+import {
+    SET_WINDOW_LOCATION,
+    HIDE_SIDEBAR,
+    SHOW_SIDEBAR,
+    SET_ASIDE_BAR_CONFIG,
+    LOG_IN
+} from "./actions-types";
 
 export const showSidebar  = (duration=0.5) => {
     return {
@@ -26,4 +32,12 @@ export const setWindowLocation = (url = '/') => ({
     location: url
 });
 
+// export const setVideoRate = (rate = undefined) => ({
+//    type: SET_VIDEO_RATE,
+//    rate
+// });
 
+export const setUserData = data => ({
+   type: LOG_IN,
+   userData: data
+});

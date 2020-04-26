@@ -6,14 +6,16 @@ class RateSlider extends Component {
     render() {
         return (
             <div className="rate-slider">
-                <div style={{ width: this.props.value + '%' }} className="rate-status"/>
+                <div style={{ width: this.props.value + '%' }}
+                     className={["rate-status"].concat( this.props.selected ? 'selected' : undefined).join(' ')}/>
             </div>
         );
     }
 }
 
 RateSlider.propTypes = {
-    value: PropTypes.number.isRequired
+    value: PropTypes.number.isRequired,
+    selected: PropTypes.bool.isRequired,
 };
 
 export default RateSlider;
