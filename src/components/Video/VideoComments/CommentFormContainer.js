@@ -19,20 +19,19 @@ class CommentFormContainer extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
+
         this.props.onSubmit({
-           text: this.state.inputComment,
+           text: this.state.inputComment.replace( /&nbsp;/g, ' '),
            userId: this.context._id
-       });
+        });
+
+        this.clearInputComment();
     };
 
     resetHandler = (e) => {
         e.preventDefault();
 
-        this.addCommentRef.current.innerHTML  = '';
-
-        this.setState({
-            inputComment: undefined
-        });
+        this.clearInputComment();
     };
 
     inputHandler = (e) => {
@@ -47,6 +46,14 @@ class CommentFormContainer extends Component {
         }
         this.setState({
            onBlur: true
+        });
+    };
+
+    clearInputComment = () => {
+        this.addCommentRef.current.innerHTML  = '';
+
+        this.setState({
+            inputComment: undefined
         });
     };
 

@@ -4,14 +4,14 @@ import PropTypes from "prop-types";
 import numberFormatter from "../../services/numberFormatter";
 import UserAvatar from "./UserAvatar/UserAvatar";
 import UserName from "./UserName/UserName";
+import {localhostURL} from "../../environments";
 
-const url = 'http://localhost:3100/';
 
 class UserLink extends Component {
     constructor(props) {
         super(props);
 
-        this._isMounded = false;
+        this._isMounted = false;
         this.state ={
             userId: this.props.initialUserId,
             data: undefined
@@ -19,33 +19,37 @@ class UserLink extends Component {
     }
 
     componentDidMount() {
-        this._isMounded = true;
+        this._isMounted = true;
 
-        fetch(url + 'channel/user?_id=' + this.state.userId)
+        fetch(localhostURL + 'channel/user?_id=' + this.state.userId)
             .then(response => response.json())
             .then(data=> {
-                this.setState({
-                    ...this.state,
-                   data
-                });
-            });
+                if (this._isMounted) {
+                    this.setState({
+                        ...this.state,
+                        data
+                    });
+                }
+            }).catch(reason => console.log(reason));
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.data && this.props.initialUserId !== prevProps.initialUserId  ) {
-            fetch(url + 'channel/user?_id=' + this.props.initialUserId)
+            fetch(localhostURL + 'channel/user?_id=' + this.props.initialUserId)
                 .then(response => response.json())
                 .then(data=> {
-                    this.setState({
-                        userId: this.props.initialUserId,
-                        data
-                    });
+                    if (this._isMounted) {
+                        this.setState({
+                            ...this.state,
+                            data
+                        });
+                    }
                 });
         }
     }
 
     componentWillUnmount() {
-        this._isMounded = false;
+        this._isMounted = false;
     }
 
     render() {

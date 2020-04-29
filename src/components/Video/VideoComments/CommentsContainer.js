@@ -3,12 +3,12 @@ import './CommentList.scss';
 import PropTypes from "prop-types";
 import numberFormatter from "../../../services/numberFormatter";
 import CommentList from "./CommentList";
-import http, {fetchData} from "../../../services/httpService";
+import http from "../../../services/httpService";
 import CommentFormContainer from "./CommentFormContainer";
 import {orderBy} from "../../../services/sort";
 import SortComments from "./SortComments";
+import {localhostURL} from "../../../environments";
 
-const url = 'http://localhost:3100/';
 
 class CommentsContainer extends Component{
     constructor(prop) {
@@ -19,13 +19,13 @@ class CommentsContainer extends Component{
         this.state = {
             data: undefined,
             tryFetch: undefined,
-            orderBy: orderBy.ASC
+            orderBy: orderBy.DESC
         }
     }
 
     componentDidMount() {
         this._isMounted = true;
-        http.get(url + 'comments/' + this.props.commentsId)
+        http.get(localhostURL + 'comments/' + this.props.commentsId)
             .then(response => response.json())
             .then(data => {
                 if (this._isMounted) {
@@ -39,7 +39,7 @@ class CommentsContainer extends Component{
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if ( (prevState.data && this.props.commentsId !== prevState.data._id) ||  this.state.tryFetch === true) {
-            http.get(url + 'comments/' + this.props.commentsId)
+            http.get(localhostURL + 'comments/' + this.props.commentsId)
                 .then(response => response.json())
                 .then(data => {
                     if (this._isMounted) {
@@ -57,7 +57,7 @@ class CommentsContainer extends Component{
     }
 
     submitHandler = (params) => {
-        http.post(url + 'comments/', {
+        http.post(localhostURL + 'comments/', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

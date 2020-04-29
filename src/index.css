@@ -190,6 +190,8 @@ button, .btn {
 
   min-height: 20px;
 
+  opacity: .4;
+
   -webkit-animation: default-bg-animation 2s ease infinite;
   -moz-animation: default-bg-animation 2s ease infinite;
   -o-animation: default-bg-animation 2s ease infinite;

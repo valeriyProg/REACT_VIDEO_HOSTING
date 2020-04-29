@@ -38,11 +38,17 @@ const url = 'http://localhost:3100/';
      }
 
      render() {
-         let commentItem;
+         let commentItem, avatar;
+
          if (this.state.data) {
+             avatar =  <UserAvatar userId={this.state.data._id} userData={this.state.data} />
+         }else {
+             avatar =  <UserAvatar userId={this.state.data} userData={this.state.data} />
+         }
              commentItem =  <div className="comment row">
                  <div className="column">
-                     <UserAvatar userId={this.state.data._id} userData={this.state.data} />
+                     { avatar }
+                     {/*<UserAvatar userId={this.state.data._id} userData={this.state.data} />*/}
                  </div>
                  <div className="column">
                      <UserName userData={this.state.data}/>
@@ -54,7 +60,6 @@ const url = 'http://localhost:3100/';
                      </div>
                  </div>
              </div>
-         }
          return (
              commentItem ? commentItem : <span className="comment-item default-preloader"/>
          )

@@ -11,15 +11,12 @@ import http from "../../../services/httpService";
 import VideoDescription from "../VideoDescription/VideoDescription";
 import SubscribeButton from "../../UI/SubscribeButton/SubscribeButton";
 import RateSlider from "../../UI/RateSlider/RateSlider";
-import SaveButton from "../../UI/SaveButton/SaveButton";
 import {connect} from "react-redux";
-import {asideBarMappers} from "../../../services/Redux/reducers/asideBarReducer";
 import {userMappers} from "../../../services/Redux/reducers/userReducer";
 import {UserContext} from "../../Store/Store";
-import {templates} from "../../../environments";
+import {localhostURL, templates} from "../../../environments";
 import LoaderTemplate from "../../LoaderTemplate/LoaderTemplate";
 
-const url = 'http://localhost:3100/';
 
 class DetailVideoContainer extends Component {
     constructor(props) {
@@ -28,7 +25,10 @@ class DetailVideoContainer extends Component {
         this._isMounted = false;
 
         this.state = {
-            videoData: undefined
+            videoData: undefined,
+            rate: undefined,
+            likeCount: undefined,
+            dislikeCount: undefined
         };
 
         this.toggleLike = this.toggleLike.bind(this);
@@ -38,12 +38,17 @@ class DetailVideoContainer extends Component {
     componentDidMount() {
         this._isMounted = true;
 
-        http.get(url + 'video/watch?v='+ this.props.videoId)
+        http.get(localhostURL + 'video/watch?v='+ this.props.videoId)
             .then(value => value.json())
             .then(value => {
                 if (this._isMounted) {
+                    let index = this.context.likedVideosId.findIndex(item=> item === value._id);
+
                     this.setState({
-                        videoData: value
+                        videoData: value,
+                        rate: index >= 0 ? 1 : -1,
+                        likeCount: value.likeCount,
+                        dislikeCount: value.dislikeCount
                     });
                 }
             });
@@ -52,7 +57,7 @@ class DetailVideoContainer extends Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         // console.log(prevState.videoData);
         if (prevState.videoData && this.props.videoId !== prevState.videoData._id.toString() ) {
-            http.get(url + 'video/watch?v='+ this.props.videoId)
+            http.get(localhostURL + 'video/watch?v='+ this.props.videoId)
                 .then(value => value.json())
                 .then(value => {
                     if (this._isMounted) {
@@ -69,41 +74,31 @@ class DetailVideoContainer extends Component {
     }
 
     toggleLike() {
-        if (this.state.data.rate === 1) {
+        if (this.state.rate === 1) {
             return this.setState({
-                data: {
-                    ...this.state.data,
-                    likeCount: this.state.data.likeCount - 1,
-                    rate: -1
-                }
-            });
+                rate: -1,
+                likeCount: this.state.likeCount - 1
+            })
         }
+
         this.setState({
-            data: {
-                ...this.state.data,
-                likeCount: this.state.data.likeCount + 1,
-                dislikeCount: this.state.data.rate > -1 ? this.state.data.dislikeCount - 1: this.state.data.dislikeCount,
-                rate: 1
-            }
-        });
+            rate: 1,
+            likeCount: this.state.likeCount + 1,
+            dislikeCount: this.state.rate > -1 ? this.state.dislikeCount - 1: this.state.dislikeCount,
+        })
     }
     toggleDislike() {
         if (this.state.data.rate === 0) {
             return this.setState({
-                data: {
-                    ...this.state.data,
-                    dislikeCount: this.state.data.dislikeCount - 1,
-                    rate: -1
-                }
-            });
+                rate: -1,
+                dislikeCount: this.state.dislikeCount - 1
+            })
         }
+
         this.setState({
-            data: {
-                ...this.state.data,
-                dislikeCount: this.state.data.dislikeCount + 1,
-                likeCount: this.state.data.rate > -1 ? this.state.data.likeCount - 1: this.state.data.likeCount,
-                rate: 0
-            }
+            rate: 0,
+            dislikeCount: this.state.dislikeCount + 1,
+            likeCount: this.state.rate > -1 ? this.state.likeCount - 1: this.state.likeCount,
         });
     }
 
@@ -111,6 +106,7 @@ class DetailVideoContainer extends Component {
         if (this.state.videoData) {
             document.title = this.state.videoData.title + ' - Media';
             console.log(this.state.videoData);
+            console.log(this.context);
             return (
                 <div className="detail-video">
                     <div className="row">
@@ -159,11 +155,11 @@ class DetailVideoContainer extends Component {
             <div className="column">
                 <div className="row space-between rate-container">
                     {/* LIKE BUTTON */}
-                    <VideoRateButton initialRateType={ 1 } selected={ this.state.videoData.rate === 1 }
-                                     data={ this.state.videoData } onClick={ this.toggleLike } />
+                    <VideoRateButton initialRateType={ 1 } selected={ this.state.rate === 1 }
+                                     data={ this.state } onClick={ this.toggleLike } />
                     {/* DISLIKE BUTTON */}
-                    <VideoRateButton initialRateType={ 0 } selected={ this.state.videoData.rate === 0 }
-                                     data={ this.state.videoData } onClick={ this.toggleDislike } />
+                    <VideoRateButton initialRateType={ 0 } selected={ this.state.rate === 0 }
+                                     data={ this.state } onClick={ this.toggleDislike } />
                 </div>
                 <div className="row">
                     <RateSlider value={95} selected={ this.state.videoData.rate >= 0 }/>

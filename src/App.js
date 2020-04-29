@@ -30,11 +30,15 @@ class App extends Component{
     componentDidMount() {
         http.get('http://localhost:3100/channel/user?_id=' + this.state.userId)
             .then(value => value.json())
+        // .then(value => value.text()).then(value => console.log(value))
+
             .then(value => {
                 this.setState({
                     userData: value
                 })
-            });
+            }).catch(reason => {
+                console.log(reason);
+        });
     }
 
     render() {
