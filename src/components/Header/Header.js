@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import TopNav from "./TopNav/TopNav";
 import Logo from "./Logo/Logo";
 import Hamburger from "./Hamburger/Hamburger";
+import SearchContainer from "./SearchBar/SearchContainer";
 
-export default class Header extends Component {
+class Header extends Component {
 
     render() {
         const styles = {
@@ -22,6 +23,9 @@ export default class Header extends Component {
                             <Logo  path='/' styles={ styles.logo} />
                         </div>
                     </div>
+                    <div className="column col-1-2">
+                        <SearchContainer/>
+                    </div>
                     <div className="column">
                         <TopNav/>
                     </div>
@@ -30,3 +34,5 @@ export default class Header extends Component {
         );
     }
 }
+
+export default  Header;

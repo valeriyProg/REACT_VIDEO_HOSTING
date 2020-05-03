@@ -82,6 +82,10 @@ a:hover {
   text-decoration: underline;
 }
 
+.col-1 {
+  width: 100%;
+}
+
 .col-1-2 {
   width: 50%;
 }
@@ -94,12 +98,32 @@ a:hover {
   width: 20%;
 }
 
+.col-1-6 {
+  width: 15%;
+}
+
+.col-2-6 {
+  width: 30%;
+}
+
+.col-5-6 {
+  width: 83%;
+}
+
 .col-4-5 {
   width: 80%;
 }
 
+.col-4-6 {
+  width: 70%;
+}
+
 .col-1-10 {
   width: 10%;
+}
+
+.col-9-10 {
+  width: 90%;
 }
 
 .col-3-4 {
@@ -130,7 +154,11 @@ img {
 }
 
 .main-content {
-  padding: 55px 0;
+  padding: 61px 0;
+}
+
+.page-content {
+  padding: 20px 15px;
 }
 
 .m-centered {
@@ -153,4 +181,41 @@ button, .btn {
 
 .row-v-centered {
     align-items: center;
+
+}
+
+.default-preloader {
+  background: linear-gradient(271deg, #e2e5e6, #dddddd, #dddddd, #d0d0d0, #d1d3d4);
+  background-size: 1000% 1000%;
+
+  min-height: 20px;
+
+  opacity: .4;
+
+  -webkit-animation: default-bg-animation 2s ease infinite;
+  -moz-animation: default-bg-animation 2s ease infinite;
+  -o-animation: default-bg-animation 2s ease infinite;
+  animation: default-bg-animation 2s ease infinite;
+}
+
+
+@-webkit-keyframes default-bg-animation {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
+}
+@-moz-keyframes default-bg-animation {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
+}
+@-o-keyframes default-bg-animation {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
+}
+@keyframes default-bg-animation {
+  0%{background-position:0% 44%}
+  50%{background-position:100% 57%}
+  100%{background-position:0% 44%}
 }

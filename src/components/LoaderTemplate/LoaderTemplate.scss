@@ -1,0 +1,28 @@
+.video-player.default-preloader {
+  height: 300px;
+  width: 100%;
+}
+
+.video-meta.default-preloader {
+  min-height: 30px;
+}
+
+.description-wrapper.default-preloader {
+  min-height: 70px;
+}
+
+.comment-wrapper.default-preloader {
+  height: 100vh;
+}
+
+.video-template {
+  height: 100vh;
+  .row {
+    div {
+      width: 100%;
+    }
+  }
+  .row {
+    padding-bottom: 10px;
+  }
+}

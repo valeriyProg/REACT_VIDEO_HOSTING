@@ -2,13 +2,16 @@ import React, {Component} from "react";
 import './UserLink.scss';
 import PropTypes from "prop-types";
 import numberFormatter from "../../services/numberFormatter";
+import UserAvatar from "./UserAvatar/UserAvatar";
+import UserName from "./UserName/UserName";
+import {localhostURL} from "../../environments";
 
-const url = 'http://localhost:3100/';
 
 class UserLink extends Component {
     constructor(props) {
         super(props);
 
+        this._isMounted = false;
         this.state ={
             userId: this.props.initialUserId,
             data: undefined
@@ -16,47 +19,53 @@ class UserLink extends Component {
     }
 
     componentDidMount() {
-        fetch(url + 'channel/' + this.state.userId)
+        this._isMounted = true;
+
+        fetch(localhostURL + 'channel/user?_id=' + this.state.userId)
             .then(response => response.json())
             .then(data=> {
-                this.setState({
-                    ...this.state,
-                   data
-                });
-            });
+                if (this._isMounted) {
+                    this.setState({
+                        ...this.state,
+                        data
+                    });
+                }
+            }).catch(reason => console.log(reason));
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevState.data && this.props.initialUserId !== prevProps.initialUserId  ) {
-            fetch(url + 'channel/' + this.props.initialUserId)
+            fetch(localhostURL + 'channel/user?_id=' + this.props.initialUserId)
                 .then(response => response.json())
                 .then(data=> {
-                    this.setState({
-                        userId: this.props.initialUserId,
-                        data
-                    });
+                    if (this._isMounted) {
+                        this.setState({
+                            ...this.state,
+                            data
+                        });
+                    }
                 });
         }
     }
 
+    componentWillUnmount() {
+        this._isMounted = false;
+    }
+
     render() {
-        let channelLogo, channelName, countDescriptions;
-        if (this.state.data) {
-            channelLogo =  <a href={"/user/" + this.state.data.id} className="avatar" title={ this.state.data.description.name }>
-                <span>{ this.state.data.description.name[0] }</span></a>;
-            channelName = <a href={"/user/" + this.state.data.id} className="user-name" title={ this.state.data.description.name }>
-                { this.state.data.description.name }</a>;
-            countDescriptions = this.state.data.description.countDescriptions > 0 ? <span>{ numberFormatter(this.state.data.description.countDescriptions) }&nbsp; subscriptions</span> : undefined;
+        let countDescriptions;
+        if (this.state.data && this.state.data.subscriptionChannelsId.length >= 0 ) {
+            countDescriptions = <span>{ numberFormatter(this.state.data.subscriptionChannelsId.length) }&nbsp; subscriptions</span>;
         }
 
         return (
             <div className="comment row">
                 <div className="column">
-                    {  channelLogo || 'loading..' }
+                    <UserAvatar userData={this.state.data} />
                 </div>
                 <div className="column">
-                    {  channelName ||  'loading...' }
-                    { countDescriptions || undefined}
+                     <UserName  userData={this.state.data}/>
+                    { countDescriptions || <div className="default-preloader"/>}
                 </div>
             </div>
         )
@@ -64,7 +73,9 @@ class UserLink extends Component {
 }
 
 UserLink.propTypes = {
-    initialUserId: PropTypes.number.isRequired,
+    initialUserId: PropTypes.string,
 };
 
 export default UserLink;
+
+

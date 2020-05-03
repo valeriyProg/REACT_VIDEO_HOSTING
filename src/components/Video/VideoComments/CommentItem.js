@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
-import {fetchData} from "../../../services/httpService";
+import http, {fetchData} from "../../../services/httpService";
 import DefaultButton from "../../UI/DefaultButton/DefaultButton";
 import RateButton from "../../UI/RateButton/RateButton";
+import UserAvatar from "../../User/UserAvatar/UserAvatar";
+import UserName from "../../User/UserName/UserName";
 
 const url = 'http://localhost:3100/';
 
@@ -10,35 +12,47 @@ const url = 'http://localhost:3100/';
      constructor(props) {
          super(props);
 
+         this._isMounted = false;
+
          this.state = {
              data: undefined
          }
      }
 
      componentDidMount() {
-         fetchData(url + 'channel/' + this.props.commentData.user.userId, null, this);
-         // fetch(url + 'channel/' + this.props.commentData.user.userId)
-         //     .then(response => response.text())
-         //     .then(text => text ? JSON.parse(text) : {})
-         //     .then(user => {
-         //         this.setState({
-         //             user
-         //         });
-         //     });
+         this._isMounted = true;
+
+         http.get(url + 'channel/user?_id=' +  this.props.commentData.userId)
+             .then(response => response.json())
+             .then(data => {
+                 if (this._isMounted) {
+                     this.setState({
+                         data
+                     });
+                 }
+             });
+     }
+
+     componentWillUnmount() {
+         this._isMounted = false;
      }
 
      render() {
-         let commentItem;
+         let commentItem, avatar;
+
          if (this.state.data) {
+             avatar =  <UserAvatar userId={this.state.data._id} userData={this.state.data} />
+         }else {
+             avatar =  <UserAvatar userId={this.state.data} userData={this.state.data} />
+         }
              commentItem =  <div className="comment row">
                  <div className="column">
-                     <a href={"/user/" + this.state.data.description.name} className="avatar" title={ this.state.data.description.name }>
-                         <span>{ this.state.data.description.name[0] }</span>
-                     </a>
+                     { avatar }
+                     {/*<UserAvatar userId={this.state.data._id} userData={this.state.data} />*/}
                  </div>
                  <div className="column">
-                     <a href={"/user/" + this.state.data.id} className="user-name" title={ this.state.data.description.name }>{ this.state.data.description.name }</a>
-                     <p>{ this.props.commentData.text }</p>
+                     <UserName userData={this.state.data}/>
+                     <p>{ this.props.commentData.comment }</p>
                      <div className="row row-v-centered comment-rate">
                          <RateButton initialRateType={ 1 } selected={ false } onClick={e=> console.log('dada')}/>
                          <RateButton initialRateType={ 0 } selected={ false } onClick={e=> console.log('dada')}/>
@@ -46,9 +60,8 @@ const url = 'http://localhost:3100/';
                      </div>
                  </div>
              </div>
-         }
          return (
-             commentItem ? commentItem : <span>Loading</span>
+             commentItem ? commentItem : <span className="comment-item default-preloader"/>
          )
      }
 }

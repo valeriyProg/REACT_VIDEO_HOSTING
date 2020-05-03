@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import AsideMenu from "../../components/AsideMenu/AsideMenu";
+import AsideMenu from "../../components/AsideMenu/AsideMenuContainer";
 import {asideBarMappers} from "../../services/Redux/reducers/asideBarReducer";
-import {windowLocationMappers} from "../../services/Redux/reducers/windowLocationReducer";
 
 
 class MainPageLayout extends Component{
@@ -10,9 +9,6 @@ class MainPageLayout extends Component{
         super(props);
 
         this._bodyRef = document.querySelector('body');
-        this.state = {
-            list : undefined,
-        }
     }
 
     componentDidMount() {
@@ -27,10 +23,10 @@ class MainPageLayout extends Component{
     render() {
         return (
             <div className="row no-wrap">
-                <div className="column col-1-5">
+                <div className="column col-1-6">
                     <AsideMenu/>
                 </div>
-                <div id="page-container" className='page-container col-4-5'>
+                <div id="page-container" className='page-container col-5-6'>
                     { this.props.children }
                 </div>
             </div>
@@ -40,12 +36,10 @@ class MainPageLayout extends Component{
 
 const mapStateToProps = (state) => ({
     ...asideBarMappers.mapStateToProps(state),
-    ...windowLocationMappers.mapStateToProps(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
     ...asideBarMappers.mapDispatchToProps(dispatch),
-    ...windowLocationMappers.mapDispatchToProps(dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainPageLayout);

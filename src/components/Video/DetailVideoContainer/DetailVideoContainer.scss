@@ -11,14 +11,11 @@ video {
 }
 
 .video-meta {
-  .info {
-    border-bottom: 1px solid #e0e0e0;
-    padding: 20px 0 0;
+  width: 100%;
 
-    .title {
-      margin: 0 0  15px;
-      width: 100%;
-    }
+  .title {
+    margin: 0 0  15px;
+    width: 100%;
   }
 }
 
@@ -29,7 +26,7 @@ video {
 
 .rate-container {
   width: 175px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .selected {
@@ -37,9 +34,13 @@ video {
   color: #065fd4;
 }
 
-.description {
-  padding: 20px 0;
+.description-wrapper {
+  padding: 20px 0 0;
   border-bottom: 1px solid #e0e0e0;
+}
+
+.video-description {
+  width: 100%;
 }
 
 .comment-content, .comment-info {
@@ -52,5 +53,6 @@ video {
 }
 
 .description-text {
-  padding: 20px 10px 0 60px;
+  padding: 20px 10px 20px 60px;
 }
+
