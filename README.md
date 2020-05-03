@@ -1,5 +1,27 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Video Hosting on React
+
+This project was developed with available design template (You Tube) https://www.youtube.com/
+
+__Status__: _At Work_
+
+___THIS PROJECT NOT FINISHED AND CONTAINS SOME BUGS___
+
+## Project Preview
+
+![Project Preview](https://github.com/valeriyProg/REACT_VIDEO_HOSTING/blob/master/VideoHosting-preview.gif)
+
+## Description
+
+This my first real big project on React. In this case i want test how React fells in big project. In future design will be change, and 
+
+i provide my own features to this video hosting. Endpoint - cloud mongodb, thats why site items loading slow. 
+
+__In my nearest planes__ - realization logging.
+
+__Next steps__ search-bar,history page, subscriptions etc.
+
 ## Available Scripts
 
 In the project directory, you can run:
