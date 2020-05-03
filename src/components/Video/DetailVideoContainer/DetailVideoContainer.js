@@ -162,7 +162,7 @@ class DetailVideoContainer extends Component {
                                      data={ this.state } onClick={ this.toggleDislike } />
                 </div>
                 <div className="row">
-                    <RateSlider value={95} selected={ this.state.videoData.rate >= 0 }/>
+                    <RateSlider value={95} selected={ this.state.rate >= 0 }/>
                 </div>
             </div>
         </div>
