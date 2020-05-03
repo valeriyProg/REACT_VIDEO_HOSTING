@@ -16,7 +16,7 @@ ___THIS PROJECT NOT FINISHED AND CONTAINS SOME BUGS___
 
 This my first real big project on React. In this case i want test how React fells in big project. In future design will be change, and 
 
-i provide my own features to this video hosting. Endpoint - cloud mongodb, thats why site items loading slow. 
+i provide my own features to this video hosting. __Endpoint__ - _Node js. Express + cloud mongodb_, thats why site items loading slow. 
 
 __In my nearest planes__ - realization logging.
 
