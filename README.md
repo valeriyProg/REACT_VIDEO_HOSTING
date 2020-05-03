@@ -1,8 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Video Hosting on React
 
 This project was developed with available design template (You Tube) https://www.youtube.com/
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 __Status__: _At Work_
 
