@@ -65,9 +65,9 @@ class AsideMenu extends Component {
                     </div>
                     <div className="content-block bordered">
                         <ul className="aside-bar-footer-list">
-                            <li><p>О сервисе Прессе Правообладателям Связаться с нами Авторам Рекламодателям Разработчикам</p></li>
-                            <li><p>Условия использования Конфиденциальность Правила и безопасность Новые функции</p></li>
-                            <li><span>© 2020 Google LLC</span></li>
+                            <li><p>Some Copyrite text, some Copyrite text some, Copyrite text</p></li>
+                            <li><p>Some Copyrite text, some Copyrite text some, Copyrite text</p></li>
+                            <li><span>© 2020 ... LLC</span></li>
                         </ul>
                     </div>
                 </div>
